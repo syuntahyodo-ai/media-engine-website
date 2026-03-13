@@ -460,162 +460,143 @@
         });
     </script>
 
-    <!-- ========== Chatbot ========== -->
-    <div id="chatWidget" style="position:fixed;bottom:2rem;right:2rem;z-index:9999;font-family:'Noto Sans JP',sans-serif;">
+    <!-- ===================== AI Chatbot ===================== -->
+    <!-- Chat Button -->
+    <button id="chatToggle" onclick="toggleChat()" aria-label="チャットを開く"
+        style="position:fixed;bottom:2rem;right:2rem;z-index:1000;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(90,122,82,0.35);transition:transform 0.2s,background 0.2s;">
+        <i data-lucide="message-circle" style="width:24px;height:24px;"></i>
+    </button>
 
-        <!-- Chat Window -->
-        <div id="chatWindow" style="display:none;width:360px;background:#fff;border:1px solid var(--border);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.12);overflow:hidden;margin-bottom:1rem;flex-direction:column;">
+    <!-- Chat Window -->
+    <div id="chatWindow"
+        style="display:none;position:fixed;bottom:6rem;right:2rem;z-index:1000;width:360px;max-width:calc(100vw - 2rem);height:500px;max-height:calc(100vh - 8rem);background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.12);display:none;flex-direction:column;overflow:hidden;">
 
-            <!-- Header -->
-            <div style="background:var(--text-main);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
-                <div style="display:flex;align-items:center;gap:0.625rem;">
-                    <div style="width:8px;height:8px;background:#4ade80;border-radius:50%;"></div>
-                    <span style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;font-weight:500;">MEDIA ENGINE AI</span>
+        <!-- Header -->
+        <div style="padding:1rem 1.25rem;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:32px;height:32px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                    <i data-lucide="bot" style="width:16px;height:16px;"></i>
                 </div>
-                <button onclick="toggleChat()" style="color:rgba(255,255,255,0.6);background:none;border:none;cursor:pointer;font-size:1rem;line-height:1;">✕</button>
-            </div>
-
-            <!-- Messages -->
-            <div id="chatMessages" style="height:380px;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:0.875rem;background:var(--bg);">
-                <div style="display:flex;gap:0.5rem;align-items:flex-start;">
-                    <div style="width:28px;height:28px;background:var(--accent-light);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-                        <span style="font-size:0.6rem;color:var(--accent);font-weight:600;letter-spacing:0.05em;">ME</span>
-                    </div>
-                    <div style="background:#fff;border:1px solid var(--border);padding:0.75rem 1rem;border-radius:0 4px 4px 4px;font-size:0.8rem;line-height:1.7;color:var(--text-main);max-width:calc(100% - 40px);">
-                        こんにちは！メディアエンジンについて、お気軽にご質問ください。
-                    </div>
+                <div>
+                    <div style="font-size:0.85rem;font-weight:600;letter-spacing:0.05em;">MEDIA ENGINE AI</div>
+                    <div style="font-size:0.65rem;opacity:0.8;">お気軽にご質問ください</div>
                 </div>
             </div>
+            <button onclick="toggleChat()" style="background:none;border:none;color:#fff;cursor:pointer;opacity:0.8;padding:4px;">
+                <i data-lucide="x" style="width:18px;height:18px;"></i>
+            </button>
+        </div>
 
-            <!-- Input -->
-            <div style="padding:0.875rem 1rem;border-top:1px solid var(--border);display:flex;gap:0.5rem;background:#fff;">
-                <input id="chatInput" type="text" placeholder="質問を入力してください..."
-                    onkeydown="if(event.key==='Enter')sendMessage()"
-                    style="flex:1;border:1px solid var(--border);border-radius:2px;padding:0.625rem 0.875rem;font-size:0.8rem;color:var(--text-main);background:var(--bg);outline:none;font-family:'Noto Sans JP',sans-serif;">
-                <button onclick="sendMessage()"
-                    style="background:var(--text-main);color:#fff;border:none;border-radius:2px;padding:0.625rem 1rem;font-size:0.75rem;letter-spacing:0.08em;cursor:pointer;transition:background 0.2s;white-space:nowrap;"
-                    onmouseover="this.style.background='var(--accent)'"
-                    onmouseout="this.style.background='var(--text-main)'">送信</button>
+        <!-- Messages -->
+        <div id="chatMessages"
+            style="flex:1;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;background:var(--bg);">
+            <!-- Initial message -->
+            <div style="display:flex;gap:0.5rem;align-items:flex-start;">
+                <div style="width:28px;height:28px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <i data-lucide="bot" style="width:13px;height:13px;color:var(--accent);"></i>
+                </div>
+                <div style="background:#fff;border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:0.75rem 1rem;font-size:0.8rem;line-height:1.6;color:var(--text-main);max-width:85%;">
+                    こんにちは！メディアエンジンのAIアシスタントです。サービスや事業内容についてお気軽にご質問ください。
+                </div>
             </div>
         </div>
 
-        <!-- Toggle Button -->
-        <button onclick="toggleChat()"
-            style="width:56px;height:56px;background:var(--text-main);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:background 0.2s;margin-left:auto;"
-            onmouseover="this.style.background='var(--accent)'"
-            onmouseout="this.style.background='var(--text-main)'">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-        </button>
+        <!-- Input -->
+        <div style="padding:0.875rem 1rem;border-top:1px solid var(--border);background:#fff;display:flex;gap:0.5rem;flex-shrink:0;">
+            <input id="chatInput" type="text" placeholder="メッセージを入力..."
+                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"
+                style="flex:1;border:1px solid var(--border);border-radius:8px;padding:0.6rem 0.875rem;font-size:0.8rem;outline:none;font-family:inherit;color:var(--text-main);background:var(--bg);transition:border-color 0.2s;"
+                onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <button id="sendBtn" onclick="sendMessage()"
+                style="width:38px;height:38px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s;">
+                <i data-lucide="send" style="width:15px;height:15px;"></i>
+            </button>
+        </div>
     </div>
 
-    <style>
-        @keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
-    </style>
-
     <script>
-        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyD5Qcp_ithFM_ROdMPHrz8OFM_FNuAOFxA';
+        // Re-init icons for chatbot elements
+        lucide.createIcons();
 
-        const SYSTEM_PROMPT = `あなたはメディアエンジン株式会社の公式AIアシスタントです。
-訪問者の質問に丁寧かつ簡潔に日本語で回答してください。
-
-【会社概要】
-社名：メディアエンジン株式会社（MEDIA ENGINE Inc.）
-ミッション：メディアで、人に、新しい体験を。
-AI技術と人の知見を融合し、一次情報に基づいた"人にしか生み出せない価値"を提供。企業の想いと生活者の共感をつなぎます。
-
-【事業内容】
-1. メディア事業：生活者のリアルな関心や課題に向き合ったコンテンツを提供。運営メディア：Wellylu、LISKUL
-2. マーケティングソリューション事業：WebメディアやSNSを中心にコンテンツ発信を支援。SEO・AIO・SNSトレンドを活用したブランド価値向上。
-
-【強み】
-- Co-creation Network：専門家・クリエイター・インフルエンサーの独自ネットワーク（著名な監督・俳優・全国アンバサダーなど）
-- Professionals：元大手出版社編集長、グロースハッカー、広告代理店マネージャーなど多彩なプロ集団
-- AI Driven Systems：独自AIツール開発によるマーケティング支援
-
-【実績】
-- 博報堂・文化放送と連携し「浜松町Innovation Culture Cafe」のWebメディア展開パートナーとして参画
-- マイナビとHakuhodo DY ONEと共同で「オウンドメディア総合支援パッケージサービス」を提供
-
-わからない情報は「詳細はお問い合わせください」と案内してください。`;
-
-        const history = [];
         let chatOpen = false;
+        let conversationHistory = [];
 
         function toggleChat() {
             chatOpen = !chatOpen;
             const win = document.getElementById('chatWindow');
+            const btn = document.getElementById('chatToggle');
             win.style.display = chatOpen ? 'flex' : 'none';
-            if (chatOpen) document.getElementById('chatInput').focus();
+            btn.style.transform = chatOpen ? 'scale(0.9)' : 'scale(1)';
+            if (chatOpen) {
+                lucide.createIcons();
+                document.getElementById('chatInput').focus();
+            }
         }
 
         function appendMessage(role, text) {
             const container = document.getElementById('chatMessages');
-            const isBot = role === 'bot';
+            const isUser = role === 'user';
+
             const wrapper = document.createElement('div');
-            wrapper.style.cssText = 'display:flex;gap:0.5rem;align-items:flex-start;' + (isBot ? '' : 'flex-direction:row-reverse;');
-            if (isBot) {
-                wrapper.innerHTML = `
-                    <div style="width:28px;height:28px;background:var(--accent-light);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-                        <span style="font-size:0.6rem;color:var(--accent);font-weight:600;letter-spacing:0.05em;">ME</span>
-                    </div>
-                    <div style="background:#fff;border:1px solid var(--border);padding:0.75rem 1rem;border-radius:0 4px 4px 4px;font-size:0.8rem;line-height:1.7;color:var(--text-main);max-width:calc(100% - 40px);white-space:pre-wrap;">${text}</div>`;
-            } else {
-                wrapper.innerHTML = `
-                    <div style="background:var(--text-main);color:#fff;padding:0.75rem 1rem;border-radius:4px 0 4px 4px;font-size:0.8rem;line-height:1.7;max-width:80%;white-space:pre-wrap;">${text}</div>`;
-            }
+            wrapper.style.cssText = `display:flex;gap:0.5rem;align-items:flex-start;${isUser ? 'flex-direction:row-reverse;' : ''}`;
+
+            const avatar = document.createElement('div');
+            avatar.style.cssText = `width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;font-weight:600;${isUser ? 'background:var(--text-main);color:#fff;' : 'background:var(--accent-light);color:var(--accent);'}`;
+            avatar.innerHTML = isUser ? 'YOU' : '<i data-lucide="bot" style="width:13px;height:13px;"></i>';
+
+            const bubble = document.createElement('div');
+            bubble.style.cssText = `padding:0.75rem 1rem;font-size:0.8rem;line-height:1.6;max-width:85%;white-space:pre-wrap;${isUser ? 'background:var(--accent);color:#fff;border-radius:12px 4px 12px 12px;' : 'background:#fff;border:1px solid var(--border);border-radius:4px 12px 12px 12px;color:var(--text-main);'}`;
+            bubble.textContent = text;
+
+            wrapper.appendChild(avatar);
+            wrapper.appendChild(bubble);
             container.appendChild(wrapper);
             container.scrollTop = container.scrollHeight;
+            lucide.createIcons();
+            return bubble;
         }
 
-        function showTyping() {
-            const container = document.getElementById('chatMessages');
-            const el = document.createElement('div');
-            el.id = 'typingIndicator';
-            el.style.cssText = 'display:flex;gap:0.5rem;align-items:flex-start;';
-            el.innerHTML = `
-                <div style="width:28px;height:28px;background:var(--accent-light);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-                    <span style="font-size:0.6rem;color:var(--accent);font-weight:600;">ME</span>
-                </div>
-                <div style="background:#fff;border:1px solid var(--border);padding:0.75rem 1rem;border-radius:0 4px 4px 4px;font-size:0.8rem;color:var(--text-sub);display:flex;gap:3px;align-items:center;">
-                    <span style="animation:blink 1.2s infinite 0s">●</span>
-                    <span style="animation:blink 1.2s infinite 0.2s">●</span>
-                    <span style="animation:blink 1.2s infinite 0.4s">●</span>
-                </div>`;
-            container.appendChild(el);
-            container.scrollTop = container.scrollHeight;
+        function setLoading(loading) {
+            const btn = document.getElementById('sendBtn');
+            const input = document.getElementById('chatInput');
+            btn.disabled = loading;
+            input.disabled = loading;
+            btn.style.opacity = loading ? '0.6' : '1';
         }
 
         async function sendMessage() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if (!text) return;
+
             input.value = '';
             appendMessage('user', text);
-            history.push({ role: 'user', parts: [{ text }] });
-            showTyping();
+            conversationHistory.push({ role: 'user', parts: [{ text }] });
+
+            setLoading(true);
+            const loadingBubble = appendMessage('model', '...');
 
             try {
-                const res = await fetch(GEMINI_API_URL, {
+                const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-                        contents: history
-                    })
+                    body: JSON.stringify({ messages: conversationHistory })
                 });
+
                 const data = await res.json();
-                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text
-                    || 'エラーが発生しました。しばらくしてからお試しください。';
-                history.push({ role: 'model', parts: [{ text: reply }] });
-                document.getElementById('typingIndicator')?.remove();
-                appendMessage('bot', reply);
-            } catch {
-                document.getElementById('typingIndicator')?.remove();
-                appendMessage('bot', '通信エラーが発生しました。しばらくしてからお試しください。');
+                if (!res.ok) throw new Error(data.error || 'エラーが発生しました');
+
+                loadingBubble.textContent = data.text;
+                conversationHistory.push({ role: 'model', parts: [{ text: data.text }] });
+            } catch (err) {
+                loadingBubble.textContent = '申し訳ございません、エラーが発生しました。しばらく経ってから再度お試しください。';
+                conversationHistory.pop();
+            } finally {
+                setLoading(false);
+                document.getElementById('chatMessages').scrollTop = 9999;
             }
         }
     </script>
+    <!-- ==================== /AI Chatbot ==================== -->
 </body>
 </html>
