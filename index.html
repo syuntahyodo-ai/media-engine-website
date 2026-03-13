@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メディアエンジン株式会社 | MEDIA ENGINE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #fff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-blur {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .card-blur:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-filter backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold tracking-tighter flex items-center">
+                    <span class="text-blue-500 mr-1">M</span>EDIA ENGINE
+                </span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#" class="nav-link">ABOUT US</a>
+                <a href="#" class="nav-link">SERVICE</a>
+                <a href="#" class="nav-link">NEWS</a>
+                <a href="#" class="nav-link">RECRUIT</a>
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full transition-colors">CONTACT</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden" id="menuToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobileMenu" class="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8 text-xl font-medium transition-transform transform translate-x-full md:hidden">
+        <a href="#" onclick="toggleMenu()">ABOUT US</a>
+        <a href="#" onclick="toggleMenu()">SERVICE</a>
+        <a href="#" onclick="toggleMenu()">NEWS</a>
+        <a href="#" onclick="toggleMenu()">RECRUIT</a>
+        <a href="#" onclick="toggleMenu()" class="bg-blue-600 px-8 py-3 rounded-full">CONTACT</a>
+        <button onclick="toggleMenu()" class="absolute top-8 right-8">
+            <i data-lucide="x"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Abstract Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-600/10 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block mb-6 px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase">
+                Media Innovation Partner
+            </div>
+            <h1 class="text-5xl md:text-8xl font-bold mb-8 leading-tight">
+                メディアで、人に、<br>
+                <span class="text-gradient">新しい体験を。</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light">
+                AI技術と人の知見を融合し、一次情報に基づいた"人にしか生み出せない価値"を提供。
+                企業の想いと生活者の共感をつなぎます。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#about" class="px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all flex items-center justify-center gap-2">
+                    私たちについて <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#service" class="px-10 py-4 border border-white/20 font-bold rounded-full hover:bg-white/5 transition-all">
+                    サービスを見る
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+            <i data-lucide="chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="about" class="py-24 bg-neutral-950">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 scroll-reveal">
+                <h2 class="text-sm font-bold text-blue-500 tracking-widest uppercase mb-4">Our Feature</h2>
+                <h3 class="text-4xl font-bold">私たちの強み</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-blur p-10 rounded-3xl scroll-reveal">
+                    <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Co-creation Network</h4>
+                    <p class="text-gray-400 leading-relaxed text-sm mb-6">
+                        専門家、クリエイター、インフルエンサーが集う独自のネットワーク。著名な監督、俳優、全国のアンバサダーなど、各分野で確かな実績を持つパートナーが参画しています。
+                    </p>
+                    <ul class="text-xs space-y-2 text-gray-500">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-blue-500"></i> エキスパート</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-blue-500"></i> クリエイター</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-blue-500"></i> インフルエンサー</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="card-blur p-10 rounded-3xl scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Professionals</h4>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        元大手出版社の編集長、グロースハッカー、広告代理店のマネージャーなど、多彩なバックグラウンドを持つプロ集団が戦略立案から実行まで伴走します。
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="card-blur p-10 rounded-3xl scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="cpu"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">AI Driven Systems</h4>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        マーケティングおよびメディア運営・制作ノウハウを基盤に、独自のAIツールを開発。精度と効率を高めたマーケティング支援で成果最大化を継続的に支援します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="service" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 scroll-reveal">
+                <div>
+                    <h2 class="text-sm font-bold text-blue-500 tracking-widest uppercase mb-4">Service</h2>
+                    <h3 class="text-4xl font-bold">事業内容</h3>
+                </div>
+                <a href="#" class="text-blue-500 font-bold flex items-center gap-2 group mt-4 md:mt-0">
+                    サービス詳細を見る <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Media Business -->
+                <div class="group scroll-reveal">
+                    <div class="relative overflow-hidden rounded-3xl aspect-[16/9] mb-8 bg-neutral-900 flex items-center justify-center">
+                        <!-- Placeholder for visual -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-50"></div>
+                        <div class="relative z-10 text-center">
+                            <span class="text-3xl font-bold tracking-tighter opacity-50">MEDIA BUSINESS</span>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">メディア事業</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        「知る」だけで終わらない体験を。生活者のリアルな関心や課題に向き合い、信頼性と体験価値を重視したコンテンツを提供し、新しい価値との出会いを生み出します。
+                    </p>
+                    <div class="flex gap-4">
+                        <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-bold">Wellylu</span>
+                        <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-bold">LISKUL</span>
+                    </div>
+                </div>
+
+                <!-- Solution Business -->
+                <div class="group scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="relative overflow-hidden rounded-3xl aspect-[16/9] mb-8 bg-neutral-900 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent opacity-50"></div>
+                        <div class="relative z-10 text-center">
+                            <span class="text-3xl font-bold tracking-tighter opacity-50">MARKETING SOLUTION</span>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">マーケティングソリューション事業</h4>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        WebメディアやSNSを中心に、戦略とクリエイティビティを掛け合わせたコンテンツ発信を支援。SEO、AIO、SNSトレンドを駆使し、ブランド価値を高める体験を実現します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-24 bg-neutral-950">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 scroll-reveal">
+                <div>
+                    <h2 class="text-sm font-bold text-blue-500 tracking-widest uppercase mb-4">News</h2>
+                    <h3 class="text-4xl font-bold">お知らせ</h3>
+                </div>
+                <a href="#" class="text-blue-500 font-bold flex items-center gap-2 group mt-4 md:mt-0">
+                    一覧を見る <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="border-t border-white/10">
+                <!-- News 1 -->
+                <a href="#" class="block py-8 border-b border-white/10 hover:bg-white/5 transition-colors group scroll-reveal">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
+                        <span class="text-gray-500 font-mono">2026.01.20</span>
+                        <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold w-fit">お知らせ</span>
+                        <h4 class="flex-1 font-medium group-hover:text-blue-400 transition-colors">
+                            メディアエンジン、博報堂・文化放送と連携し 「浜松町Innovation Culture Cafe」 Webメディア展開のパートナーとして参画
+                        </h4>
+                        <i data-lucide="chevron-right" class="hidden md:block w-5 h-5 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1"></i>
+                    </div>
+                </a>
+
+                <!-- News 2 -->
+                <a href="#" class="block py-8 border-b border-white/10 hover:bg-white/5 transition-colors group scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
+                        <span class="text-gray-500 font-mono">2025.12.23</span>
+                        <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold w-fit">お知らせ</span>
+                        <h4 class="flex-1 font-medium group-hover:text-blue-400 transition-colors">
+                            ホームページをリニューアルしました
+                        </h4>
+                        <i data-lucide="chevron-right" class="hidden md:block w-5 h-5 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1"></i>
+                    </div>
+                </a>
+
+                <!-- News 3 -->
+                <a href="#" class="block py-8 border-b border-white/10 hover:bg-white/5 transition-colors group scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
+                        <span class="text-gray-500 font-mono">2025.11.10</span>
+                        <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold w-fit">お知らせ</span>
+                        <h4 class="flex-1 font-medium group-hover:text-blue-400 transition-colors">
+                            マイナビとHakuhodo DY ONEと共同で「オウンドメディア総合支援パッケージサービス」を提供開始
+                        </h4>
+                        <i data-lucide="chevron-right" class="hidden md:block w-5 h-5 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-24 pb-12 bg-black border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between gap-12 mb-20">
+                <div class="max-w-sm">
+                    <span class="text-2xl font-bold tracking-tighter flex items-center mb-6">
+                        <span class="text-blue-500 mr-1">M</span>EDIA ENGINE
+                    </span>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                        メディアで、人に、新しい体験を。<br>
+                        テクノロジーとクリエイティビティで情報の価値を最大化し、社会に貢献します。
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                    <div>
+                        <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-blue-500">About</h5>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">私たちについて</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">企業情報</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">ミッション</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-blue-500">Service</h5>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">メディア事業</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">マーケティング支援</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">実績紹介</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-blue-500">Other</h5>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">採用情報</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">お知らせ</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">お問い合わせ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-600">
+                <p>&copy; 2026 MEDIA ENGINE Inc. All Rights Reserved.</p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a>
+                    <a href="#" class="hover:text-white transition-colors">情報セキュリティ方針</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Sticky Header Transition
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/90');
+                nav.classList.add('h-16');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.remove('bg-black/90');
+                nav.classList.add('h-20');
+                nav.classList.remove('h-16');
+            }
+        });
+    </script>
+</body>
+</html>
