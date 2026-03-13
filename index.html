@@ -5,43 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メディアエンジン株式会社 | MEDIA ENGINE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        :root {
+            --theme-color: #dde5cc;
+            --accent: #5a7a52;
+            --accent-light: #edf1e4;
+            --text-main: #2a2a28;
+            --text-sub: #7a7a74;
+            --border: #e4e4de;
+            --bg: #fafaf7;
+        }
+
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: var(--bg);
+            color: var(--text-main);
             overflow-x: hidden;
         }
-        .text-gradient {
-            background: linear-gradient(90deg, #fff 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
         }
-        .card-blur {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .card-blur:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: #3b82f6;
-            transform: translateY(-5px);
-        }
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+
         .nav-link {
             position: relative;
+            color: var(--text-main);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -49,132 +43,217 @@
             height: 1px;
             bottom: -4px;
             left: 0;
-            background-color: #3b82f6;
+            background-color: var(--accent);
             transition: width 0.3s ease;
         }
+
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        .card-clean {
+            background: #fff;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .card-clean:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(90, 122, 82, 0.08);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .label {
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: #fff;
+            padding: 0.85rem 2.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            transition: background-color 0.25s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            padding: 0.85rem 2.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            transition: all 0.25s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-main);
+            color: #fff;
+        }
+
+        .tag {
+            background-color: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.75rem;
+            font-weight: 500;
+        }
+
+        .divider {
+            border-color: var(--border);
+        }
+
+        .hero-bg {
+            background-color: var(--accent-light);
+        }
+
+        .section-alt {
+            background-color: #f4f5ef;
         }
     </style>
 </head>
 <body>
 
     <!-- Header / Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-filter backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <span class="text-2xl font-bold tracking-tighter flex items-center">
-                    <span class="text-blue-500 mr-1">M</span>EDIA ENGINE
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b" style="border-color: var(--border);">
+        <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center">
+                <span class="text-base font-semibold tracking-[0.2em]" style="font-family: 'Noto Serif JP', serif;">
+                    MEDIA ENGINE
                 </span>
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <div class="hidden md:flex items-center gap-10 text-xs tracking-widest font-medium" style="color: var(--text-main);">
                 <a href="#" class="nav-link">ABOUT US</a>
                 <a href="#" class="nav-link">SERVICE</a>
                 <a href="#" class="nav-link">NEWS</a>
                 <a href="#" class="nav-link">RECRUIT</a>
-                <a href="#" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full transition-colors">CONTACT</a>
+                <a href="#" class="btn-primary inline-block">CONTACT</a>
             </div>
 
             <!-- Mobile Toggle -->
-            <button class="md:hidden" id="menuToggle">
-                <i data-lucide="menu"></i>
+            <button class="md:hidden" id="menuToggle" style="color: var(--text-main);">
+                <i data-lucide="menu" class="w-5 h-5"></i>
             </button>
         </div>
     </nav>
 
     <!-- Mobile Menu Drawer -->
-    <div id="mobileMenu" class="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8 text-xl font-medium transition-transform transform translate-x-full md:hidden">
+    <div id="mobileMenu" class="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-10 text-sm font-medium tracking-widest transition-transform transform translate-x-full md:hidden" style="color: var(--text-main);">
         <a href="#" onclick="toggleMenu()">ABOUT US</a>
         <a href="#" onclick="toggleMenu()">SERVICE</a>
         <a href="#" onclick="toggleMenu()">NEWS</a>
         <a href="#" onclick="toggleMenu()">RECRUIT</a>
-        <a href="#" onclick="toggleMenu()" class="bg-blue-600 px-8 py-3 rounded-full">CONTACT</a>
-        <button onclick="toggleMenu()" class="absolute top-8 right-8">
-            <i data-lucide="x"></i>
+        <a href="#" onclick="toggleMenu()" class="btn-primary inline-block">CONTACT</a>
+        <button onclick="toggleMenu()" class="absolute top-6 right-8" style="color: var(--text-main);">
+            <i data-lucide="x" class="w-5 h-5"></i>
         </button>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <!-- Abstract Background -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-600/10 rounded-full blur-[100px]"></div>
-        </div>
-
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="inline-block mb-6 px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase">
-                Media Innovation Partner
+    <section class="relative min-h-screen flex items-center pt-16 overflow-hidden hero-bg">
+        <div class="container mx-auto px-8 md:px-16 py-24 grid md:grid-cols-2 gap-16 items-center">
+            <div class="scroll-reveal">
+                <p class="label mb-6">Media Innovation Partner</p>
+                <h1 class="text-4xl md:text-6xl font-light leading-snug mb-8" style="color: var(--text-main);">
+                    メディアで、人に、<br>
+                    新しい体験を。
+                </h1>
+                <p class="text-sm leading-relaxed mb-12" style="color: var(--text-sub); max-width: 28rem;">
+                    AI技術と人の知見を融合し、一次情報に基づいた<br>
+                    "人にしか生み出せない価値"を提供。<br>
+                    企業の想いと生活者の共感をつなぎます。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#about" class="btn-primary inline-flex items-center justify-center gap-2">
+                        私たちについて <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <a href="#service" class="btn-outline inline-flex items-center justify-center">
+                        サービスを見る
+                    </a>
+                </div>
             </div>
-            <h1 class="text-5xl md:text-8xl font-bold mb-8 leading-tight">
-                メディアで、人に、<br>
-                <span class="text-gradient">新しい体験を。</span>
-            </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light">
-                AI技術と人の知見を融合し、一次情報に基づいた"人にしか生み出せない価値"を提供。
-                企業の想いと生活者の共感をつなぎます。
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#about" class="px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all flex items-center justify-center gap-2">
-                    私たちについて <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-                <a href="#service" class="px-10 py-4 border border-white/20 font-bold rounded-full hover:bg-white/5 transition-all">
-                    サービスを見る
-                </a>
+
+            <!-- Hero visual -->
+            <div class="hidden md:flex justify-end scroll-reveal" style="transition-delay: 0.2s;">
+                <div class="relative w-full max-w-md aspect-square rounded-sm overflow-hidden" style="background: var(--theme-color);">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-5xl font-light tracking-[0.3em]" style="color: var(--accent); font-family: 'Noto Serif JP', serif; opacity: 0.4;">ME</span>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 h-1/3" style="background: linear-gradient(to top, var(--accent-light), transparent);"></div>
+                </div>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-            <i data-lucide="chevron-down"></i>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce" style="color: var(--text-sub);">
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="about" class="py-24 bg-neutral-950">
-        <div class="container mx-auto px-6">
-            <div class="mb-16 scroll-reveal">
-                <h2 class="text-sm font-bold text-blue-500 tracking-widest uppercase mb-4">Our Feature</h2>
-                <h3 class="text-4xl font-bold">私たちの強み</h3>
+    <section id="about" class="py-28 bg-white">
+        <div class="container mx-auto px-8 md:px-16">
+            <div class="mb-20 scroll-reveal">
+                <p class="label mb-4">Our Feature</p>
+                <h2 class="text-3xl font-light" style="color: var(--text-main);">私たちの強み</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="card-blur p-10 rounded-3xl scroll-reveal">
-                    <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="users"></i>
+                <div class="card-clean p-10 rounded-sm scroll-reveal">
+                    <div class="w-10 h-10 flex items-center justify-center mb-8 rounded-sm" style="background: var(--accent-light); color: var(--accent);">
+                        <i data-lucide="users" class="w-4 h-4"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-4">Co-creation Network</h4>
-                    <p class="text-gray-400 leading-relaxed text-sm mb-6">
+                    <h3 class="text-lg font-medium mb-4" style="letter-spacing: 0.05em;">Co-creation Network</h3>
+                    <p class="text-sm leading-relaxed mb-8" style="color: var(--text-sub);">
                         専門家、クリエイター、インフルエンサーが集う独自のネットワーク。著名な監督、俳優、全国のアンバサダーなど、各分野で確かな実績を持つパートナーが参画しています。
                     </p>
-                    <ul class="text-xs space-y-2 text-gray-500">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-blue-500"></i> エキスパート</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-blue-500"></i> クリエイター</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-blue-500"></i> インフルエンサー</li>
+                    <ul class="text-xs space-y-2.5" style="color: var(--text-sub);">
+                        <li class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full" style="background: var(--accent);"></span> エキスパート</li>
+                        <li class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full" style="background: var(--accent);"></span> クリエイター</li>
+                        <li class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full" style="background: var(--accent);"></span> インフルエンサー</li>
                     </ul>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="card-blur p-10 rounded-3xl scroll-reveal" style="transition-delay: 0.1s;">
-                    <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="award"></i>
+                <div class="card-clean p-10 rounded-sm scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="w-10 h-10 flex items-center justify-center mb-8 rounded-sm" style="background: var(--accent-light); color: var(--accent);">
+                        <i data-lucide="award" class="w-4 h-4"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-4">Professionals</h4>
-                    <p class="text-gray-400 leading-relaxed text-sm">
+                    <h3 class="text-lg font-medium mb-4" style="letter-spacing: 0.05em;">Professionals</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-sub);">
                         元大手出版社の編集長、グロースハッカー、広告代理店のマネージャーなど、多彩なバックグラウンドを持つプロ集団が戦略立案から実行まで伴走します。
                     </p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="card-blur p-10 rounded-3xl scroll-reveal" style="transition-delay: 0.2s;">
-                    <div class="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="cpu"></i>
+                <div class="card-clean p-10 rounded-sm scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="w-10 h-10 flex items-center justify-center mb-8 rounded-sm" style="background: var(--accent-light); color: var(--accent);">
+                        <i data-lucide="cpu" class="w-4 h-4"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-4">AI Driven Systems</h4>
-                    <p class="text-gray-400 leading-relaxed text-sm">
+                    <h3 class="text-lg font-medium mb-4" style="letter-spacing: 0.05em;">AI Driven Systems</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-sub);">
                         マーケティングおよびメディア運営・制作ノウハウを基盤に、独自のAIツールを開発。精度と効率を高めたマーケティング支援で成果最大化を継続的に支援します。
                     </p>
                 </div>
@@ -183,48 +262,49 @@
     </section>
 
     <!-- Services Section -->
-    <section id="service" class="py-24">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 scroll-reveal">
+    <section id="service" class="py-28 section-alt">
+        <div class="container mx-auto px-8 md:px-16">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 scroll-reveal">
                 <div>
-                    <h2 class="text-sm font-bold text-blue-500 tracking-widest uppercase mb-4">Service</h2>
-                    <h3 class="text-4xl font-bold">事業内容</h3>
+                    <p class="label mb-4">Service</p>
+                    <h2 class="text-3xl font-light" style="color: var(--text-main);">事業内容</h2>
                 </div>
-                <a href="#" class="text-blue-500 font-bold flex items-center gap-2 group mt-4 md:mt-0">
-                    サービス詳細を見る <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                <a href="#" class="text-sm flex items-center gap-2 group mt-4 md:mt-0" style="color: var(--accent); letter-spacing: 0.08em;">
+                    サービス詳細を見る <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Media Business -->
                 <div class="group scroll-reveal">
-                    <div class="relative overflow-hidden rounded-3xl aspect-[16/9] mb-8 bg-neutral-900 flex items-center justify-center">
-                        <!-- Placeholder for visual -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-50"></div>
-                        <div class="relative z-10 text-center">
-                            <span class="text-3xl font-bold tracking-tighter opacity-50">MEDIA BUSINESS</span>
+                    <div class="relative overflow-hidden aspect-[4/3] mb-8 rounded-sm" style="background: var(--theme-color);">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-light tracking-[0.25em]" style="color: var(--accent); font-family: 'Noto Serif JP', serif; opacity: 0.5;">MEDIA BUSINESS</span>
                         </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1/4" style="background: linear-gradient(to top, rgba(221,229,204,0.6), transparent);"></div>
                     </div>
-                    <h4 class="text-2xl font-bold mb-4">メディア事業</h4>
-                    <p class="text-gray-400 leading-relaxed mb-6">
+                    <p class="label mb-3">01</p>
+                    <h3 class="text-xl font-medium mb-4" style="color: var(--text-main);">メディア事業</h3>
+                    <p class="text-sm leading-relaxed mb-6" style="color: var(--text-sub);">
                         「知る」だけで終わらない体験を。生活者のリアルな関心や課題に向き合い、信頼性と体験価値を重視したコンテンツを提供し、新しい価値との出会いを生み出します。
                     </p>
-                    <div class="flex gap-4">
-                        <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-bold">Wellylu</span>
-                        <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-bold">LISKUL</span>
+                    <div class="flex gap-3">
+                        <span class="tag">Wellylu</span>
+                        <span class="tag">LISKUL</span>
                     </div>
                 </div>
 
                 <!-- Solution Business -->
-                <div class="group scroll-reveal" style="transition-delay: 0.1s;">
-                    <div class="relative overflow-hidden rounded-3xl aspect-[16/9] mb-8 bg-neutral-900 flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent opacity-50"></div>
-                        <div class="relative z-10 text-center">
-                            <span class="text-3xl font-bold tracking-tighter opacity-50">MARKETING SOLUTION</span>
+                <div class="group scroll-reveal" style="transition-delay: 0.15s;">
+                    <div class="relative overflow-hidden aspect-[4/3] mb-8 rounded-sm" style="background: #dde4d4;">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-light tracking-[0.2em] text-center" style="color: var(--accent); font-family: 'Noto Serif JP', serif; opacity: 0.5;">MARKETING<br>SOLUTION</span>
                         </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1/4" style="background: linear-gradient(to top, rgba(221,228,212,0.6), transparent);"></div>
                     </div>
-                    <h4 class="text-2xl font-bold mb-4">マーケティングソリューション事業</h4>
-                    <p class="text-gray-400 leading-relaxed mb-6">
+                    <p class="label mb-3">02</p>
+                    <h3 class="text-xl font-medium mb-4" style="color: var(--text-main);">マーケティングソリューション事業</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-sub);">
                         WebメディアやSNSを中心に、戦略とクリエイティビティを掛け合わせたコンテンツ発信を支援。SEO、AIO、SNSトレンドを駆使し、ブランド価値を高める体験を実現します。
                     </p>
                 </div>
@@ -233,52 +313,52 @@
     </section>
 
     <!-- News Section -->
-    <section class="py-24 bg-neutral-950">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 scroll-reveal">
+    <section id="news" class="py-28 bg-white">
+        <div class="container mx-auto px-8 md:px-16">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 scroll-reveal">
                 <div>
-                    <h2 class="text-sm font-bold text-blue-500 tracking-widest uppercase mb-4">News</h2>
-                    <h3 class="text-4xl font-bold">お知らせ</h3>
+                    <p class="label mb-4">News</p>
+                    <h2 class="text-3xl font-light" style="color: var(--text-main);">お知らせ</h2>
                 </div>
-                <a href="#" class="text-blue-500 font-bold flex items-center gap-2 group mt-4 md:mt-0">
-                    一覧を見る <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                <a href="#" class="text-sm flex items-center gap-2 group mt-4 md:mt-0" style="color: var(--accent); letter-spacing: 0.08em;">
+                    一覧を見る <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
 
-            <div class="border-t border-white/10">
+            <div class="border-t divider">
                 <!-- News 1 -->
-                <a href="#" class="block py-8 border-b border-white/10 hover:bg-white/5 transition-colors group scroll-reveal">
+                <a href="#" class="block py-8 border-b divider hover:bg-stone-50 transition-colors group scroll-reveal">
                     <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
-                        <span class="text-gray-500 font-mono">2026.01.20</span>
-                        <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold w-fit">お知らせ</span>
-                        <h4 class="flex-1 font-medium group-hover:text-blue-400 transition-colors">
+                        <span class="text-xs" style="color: var(--text-sub); font-variant-numeric: tabular-nums; letter-spacing: 0.05em;">2026.01.20</span>
+                        <span class="tag w-fit">お知らせ</span>
+                        <h4 class="flex-1 text-sm font-medium leading-relaxed group-hover:underline" style="text-decoration-color: var(--accent);">
                             メディアエンジン、博報堂・文化放送と連携し 「浜松町Innovation Culture Cafe」 Webメディア展開のパートナーとして参画
                         </h4>
-                        <i data-lucide="chevron-right" class="hidden md:block w-5 h-5 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1"></i>
+                        <i data-lucide="arrow-right" class="hidden md:block w-4 h-4 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" style="color: var(--accent);"></i>
                     </div>
                 </a>
 
                 <!-- News 2 -->
-                <a href="#" class="block py-8 border-b border-white/10 hover:bg-white/5 transition-colors group scroll-reveal" style="transition-delay: 0.1s;">
+                <a href="#" class="block py-8 border-b divider hover:bg-stone-50 transition-colors group scroll-reveal" style="transition-delay: 0.1s;">
                     <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
-                        <span class="text-gray-500 font-mono">2025.12.23</span>
-                        <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold w-fit">お知らせ</span>
-                        <h4 class="flex-1 font-medium group-hover:text-blue-400 transition-colors">
+                        <span class="text-xs" style="color: var(--text-sub); font-variant-numeric: tabular-nums; letter-spacing: 0.05em;">2025.12.23</span>
+                        <span class="tag w-fit">お知らせ</span>
+                        <h4 class="flex-1 text-sm font-medium leading-relaxed group-hover:underline" style="text-decoration-color: var(--accent);">
                             ホームページをリニューアルしました
                         </h4>
-                        <i data-lucide="chevron-right" class="hidden md:block w-5 h-5 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1"></i>
+                        <i data-lucide="arrow-right" class="hidden md:block w-4 h-4 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" style="color: var(--accent);"></i>
                     </div>
                 </a>
 
                 <!-- News 3 -->
-                <a href="#" class="block py-8 border-b border-white/10 hover:bg-white/5 transition-colors group scroll-reveal" style="transition-delay: 0.2s;">
+                <a href="#" class="block py-8 border-b divider hover:bg-stone-50 transition-colors group scroll-reveal" style="transition-delay: 0.2s;">
                     <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
-                        <span class="text-gray-500 font-mono">2025.11.10</span>
-                        <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold w-fit">お知らせ</span>
-                        <h4 class="flex-1 font-medium group-hover:text-blue-400 transition-colors">
+                        <span class="text-xs" style="color: var(--text-sub); font-variant-numeric: tabular-nums; letter-spacing: 0.05em;">2025.11.10</span>
+                        <span class="tag w-fit">お知らせ</span>
+                        <h4 class="flex-1 text-sm font-medium leading-relaxed group-hover:underline" style="text-decoration-color: var(--accent);">
                             マイナビとHakuhodo DY ONEと共同で「オウンドメディア総合支援パッケージサービス」を提供開始
                         </h4>
-                        <i data-lucide="chevron-right" class="hidden md:block w-5 h-5 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1"></i>
+                        <i data-lucide="arrow-right" class="hidden md:block w-4 h-4 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" style="color: var(--accent);"></i>
                     </div>
                 </a>
             </div>
@@ -286,70 +366,68 @@
     </section>
 
     <!-- Footer -->
-    <footer class="pt-24 pb-12 bg-black border-t border-white/10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between gap-12 mb-20">
-                <div class="max-w-sm">
-                    <span class="text-2xl font-bold tracking-tighter flex items-center mb-6">
-                        <span class="text-blue-500 mr-1">M</span>EDIA ENGINE
+    <footer class="pt-24 pb-12 section-alt border-t divider">
+        <div class="container mx-auto px-8 md:px-16">
+            <div class="flex flex-col md:flex-row justify-between gap-16 mb-20">
+                <div class="max-w-xs">
+                    <span class="text-base font-semibold tracking-[0.2em] mb-8 block" style="font-family: 'Noto Serif JP', serif; color: var(--text-main);">
+                        MEDIA ENGINE
                     </span>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                    <p class="text-sm leading-relaxed mb-10" style="color: var(--text-sub);">
                         メディアで、人に、新しい体験を。<br>
                         テクノロジーとクリエイティビティで情報の価値を最大化し、社会に貢献します。
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-sm border flex items-center justify-center transition-all hover:border-stone-400" style="border-color: var(--border); color: var(--text-sub);">
+                            <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        <a href="#" class="w-9 h-9 rounded-sm border flex items-center justify-center transition-all hover:border-stone-400" style="border-color: var(--border); color: var(--text-sub);">
+                            <i data-lucide="twitter" class="w-3.5 h-3.5"></i>
                         </a>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
                     <div>
-                        <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-blue-500">About</h5>
-                        <ul class="space-y-4 text-sm text-gray-400">
-                            <li><a href="#" class="hover:text-white transition-colors">私たちについて</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">企業情報</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">ミッション</a></li>
+                        <h5 class="label mb-6">About</h5>
+                        <ul class="space-y-4 text-sm" style="color: var(--text-sub);">
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">私たちについて</a></li>
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">企業情報</a></li>
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">ミッション</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-blue-500">Service</h5>
-                        <ul class="space-y-4 text-sm text-gray-400">
-                            <li><a href="#" class="hover:text-white transition-colors">メディア事業</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">マーケティング支援</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">実績紹介</a></li>
+                        <h5 class="label mb-6">Service</h5>
+                        <ul class="space-y-4 text-sm" style="color: var(--text-sub);">
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">メディア事業</a></li>
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">マーケティング支援</a></li>
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">実績紹介</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-blue-500">Other</h5>
-                        <ul class="space-y-4 text-sm text-gray-400">
-                            <li><a href="#" class="hover:text-white transition-colors">採用情報</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">お知らせ</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">お問い合わせ</a></li>
+                        <h5 class="label mb-6">Other</h5>
+                        <ul class="space-y-4 text-sm" style="color: var(--text-sub);">
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">採用情報</a></li>
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">お知らせ</a></li>
+                            <li><a href="#" class="hover:text-stone-800 transition-colors">お問い合わせ</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-600">
+            <div class="pt-10 border-t divider flex flex-col md:flex-row justify-between items-center gap-6 text-xs" style="color: var(--text-sub);">
                 <p>&copy; 2026 MEDIA ENGINE Inc. All Rights Reserved.</p>
                 <div class="flex gap-8">
-                    <a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a>
-                    <a href="#" class="hover:text-white transition-colors">情報セキュリティ方針</a>
+                    <a href="#" class="hover:text-stone-600 transition-colors">プライバシーポリシー</a>
+                    <a href="#" class="hover:text-stone-600 transition-colors">情報セキュリティ方針</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
 
-        // Mobile Menu Logic
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -360,36 +438,184 @@
 
         menuToggle.addEventListener('click', toggleMenu);
 
-        // Scroll Reveal Animation
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 
-        // Sticky Header Transition
+        // Sticky Header
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
-                nav.classList.add('bg-black/90');
-                nav.classList.add('h-16');
-                nav.classList.remove('h-20');
+                nav.classList.add('shadow-sm');
             } else {
-                nav.classList.remove('bg-black/90');
-                nav.classList.add('h-20');
-                nav.classList.remove('h-16');
+                nav.classList.remove('shadow-sm');
             }
         });
+    </script>
+
+    <!-- ========== Chatbot ========== -->
+    <div id="chatWidget" style="position:fixed;bottom:2rem;right:2rem;z-index:9999;font-family:'Noto Sans JP',sans-serif;">
+
+        <!-- Chat Window -->
+        <div id="chatWindow" style="display:none;width:360px;background:#fff;border:1px solid var(--border);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.12);overflow:hidden;margin-bottom:1rem;flex-direction:column;">
+
+            <!-- Header -->
+            <div style="background:var(--text-main);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:0.625rem;">
+                    <div style="width:8px;height:8px;background:#4ade80;border-radius:50%;"></div>
+                    <span style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;font-weight:500;">MEDIA ENGINE AI</span>
+                </div>
+                <button onclick="toggleChat()" style="color:rgba(255,255,255,0.6);background:none;border:none;cursor:pointer;font-size:1rem;line-height:1;">✕</button>
+            </div>
+
+            <!-- Messages -->
+            <div id="chatMessages" style="height:380px;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:0.875rem;background:var(--bg);">
+                <div style="display:flex;gap:0.5rem;align-items:flex-start;">
+                    <div style="width:28px;height:28px;background:var(--accent-light);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                        <span style="font-size:0.6rem;color:var(--accent);font-weight:600;letter-spacing:0.05em;">ME</span>
+                    </div>
+                    <div style="background:#fff;border:1px solid var(--border);padding:0.75rem 1rem;border-radius:0 4px 4px 4px;font-size:0.8rem;line-height:1.7;color:var(--text-main);max-width:calc(100% - 40px);">
+                        こんにちは！メディアエンジンについて、お気軽にご質問ください。
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <div style="padding:0.875rem 1rem;border-top:1px solid var(--border);display:flex;gap:0.5rem;background:#fff;">
+                <input id="chatInput" type="text" placeholder="質問を入力してください..."
+                    onkeydown="if(event.key==='Enter')sendMessage()"
+                    style="flex:1;border:1px solid var(--border);border-radius:2px;padding:0.625rem 0.875rem;font-size:0.8rem;color:var(--text-main);background:var(--bg);outline:none;font-family:'Noto Sans JP',sans-serif;">
+                <button onclick="sendMessage()"
+                    style="background:var(--text-main);color:#fff;border:none;border-radius:2px;padding:0.625rem 1rem;font-size:0.75rem;letter-spacing:0.08em;cursor:pointer;transition:background 0.2s;white-space:nowrap;"
+                    onmouseover="this.style.background='var(--accent)'"
+                    onmouseout="this.style.background='var(--text-main)'">送信</button>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleChat()"
+            style="width:56px;height:56px;background:var(--text-main);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:background 0.2s;margin-left:auto;"
+            onmouseover="this.style.background='var(--accent)'"
+            onmouseout="this.style.background='var(--text-main)'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+        </button>
+    </div>
+
+    <style>
+        @keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
+    </style>
+
+    <script>
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyD5Qcp_ithFM_ROdMPHrz8OFM_FNuAOFxA';
+
+        const SYSTEM_PROMPT = `あなたはメディアエンジン株式会社の公式AIアシスタントです。
+訪問者の質問に丁寧かつ簡潔に日本語で回答してください。
+
+【会社概要】
+社名：メディアエンジン株式会社（MEDIA ENGINE Inc.）
+ミッション：メディアで、人に、新しい体験を。
+AI技術と人の知見を融合し、一次情報に基づいた"人にしか生み出せない価値"を提供。企業の想いと生活者の共感をつなぎます。
+
+【事業内容】
+1. メディア事業：生活者のリアルな関心や課題に向き合ったコンテンツを提供。運営メディア：Wellylu、LISKUL
+2. マーケティングソリューション事業：WebメディアやSNSを中心にコンテンツ発信を支援。SEO・AIO・SNSトレンドを活用したブランド価値向上。
+
+【強み】
+- Co-creation Network：専門家・クリエイター・インフルエンサーの独自ネットワーク（著名な監督・俳優・全国アンバサダーなど）
+- Professionals：元大手出版社編集長、グロースハッカー、広告代理店マネージャーなど多彩なプロ集団
+- AI Driven Systems：独自AIツール開発によるマーケティング支援
+
+【実績】
+- 博報堂・文化放送と連携し「浜松町Innovation Culture Cafe」のWebメディア展開パートナーとして参画
+- マイナビとHakuhodo DY ONEと共同で「オウンドメディア総合支援パッケージサービス」を提供
+
+わからない情報は「詳細はお問い合わせください」と案内してください。`;
+
+        const history = [];
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            const win = document.getElementById('chatWindow');
+            win.style.display = chatOpen ? 'flex' : 'none';
+            if (chatOpen) document.getElementById('chatInput').focus();
+        }
+
+        function appendMessage(role, text) {
+            const container = document.getElementById('chatMessages');
+            const isBot = role === 'bot';
+            const wrapper = document.createElement('div');
+            wrapper.style.cssText = 'display:flex;gap:0.5rem;align-items:flex-start;' + (isBot ? '' : 'flex-direction:row-reverse;');
+            if (isBot) {
+                wrapper.innerHTML = `
+                    <div style="width:28px;height:28px;background:var(--accent-light);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                        <span style="font-size:0.6rem;color:var(--accent);font-weight:600;letter-spacing:0.05em;">ME</span>
+                    </div>
+                    <div style="background:#fff;border:1px solid var(--border);padding:0.75rem 1rem;border-radius:0 4px 4px 4px;font-size:0.8rem;line-height:1.7;color:var(--text-main);max-width:calc(100% - 40px);white-space:pre-wrap;">${text}</div>`;
+            } else {
+                wrapper.innerHTML = `
+                    <div style="background:var(--text-main);color:#fff;padding:0.75rem 1rem;border-radius:4px 0 4px 4px;font-size:0.8rem;line-height:1.7;max-width:80%;white-space:pre-wrap;">${text}</div>`;
+            }
+            container.appendChild(wrapper);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showTyping() {
+            const container = document.getElementById('chatMessages');
+            const el = document.createElement('div');
+            el.id = 'typingIndicator';
+            el.style.cssText = 'display:flex;gap:0.5rem;align-items:flex-start;';
+            el.innerHTML = `
+                <div style="width:28px;height:28px;background:var(--accent-light);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-size:0.6rem;color:var(--accent);font-weight:600;">ME</span>
+                </div>
+                <div style="background:#fff;border:1px solid var(--border);padding:0.75rem 1rem;border-radius:0 4px 4px 4px;font-size:0.8rem;color:var(--text-sub);display:flex;gap:3px;align-items:center;">
+                    <span style="animation:blink 1.2s infinite 0s">●</span>
+                    <span style="animation:blink 1.2s infinite 0.2s">●</span>
+                    <span style="animation:blink 1.2s infinite 0.4s">●</span>
+                </div>`;
+            container.appendChild(el);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = '';
+            appendMessage('user', text);
+            history.push({ role: 'user', parts: [{ text }] });
+            showTyping();
+
+            try {
+                const res = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+                        contents: history
+                    })
+                });
+                const data = await res.json();
+                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text
+                    || 'エラーが発生しました。しばらくしてからお試しください。';
+                history.push({ role: 'model', parts: [{ text: reply }] });
+                document.getElementById('typingIndicator')?.remove();
+                appendMessage('bot', reply);
+            } catch {
+                document.getElementById('typingIndicator')?.remove();
+                appendMessage('bot', '通信エラーが発生しました。しばらくしてからお試しください。');
+            }
+        }
     </script>
 </body>
 </html>
